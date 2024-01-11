@@ -1,0 +1,77 @@
+<div class="flex min-h-screen">
+  <div class="flex flex-1 flex-col justify-center px-4 py-12 sm:px-6 lg:px-20 xl:px-24 mx-auto lg:mx-0">
+    <div class="mx-auto w-full max-w-sm lg:w-96">
+      <div>
+        <img class="h-10 w-auto" src="<%= asset_path('main.png') %>" alt="Your Company">
+        <h2 class="mt-8 text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign up for your account</h2>
+      </div>
+
+      <div class="mt-10">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "space-y-6" }) do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %>
+
+          <div>
+            <%= f.label :email, class: "block text-sm font-medium leading-6 text-gray-900" %>
+            <div class="mt-2">
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true, class: "block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+            </div>
+          </div>
+
+          <div>
+            <%= f.label :date_of_birth, class: "block text-sm font-medium leading-6 text-gray-900" %>
+            <div class="mt-2">
+              <%= f.date_field :date_of_birth, required: true, class: "block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+            </div>
+          </div>
+
+          <div>
+            <label class="text-base text-gray-900">Gender</label>
+            <fieldset class="mt-4">
+              <div class="space-y-4 sm:flex sm:items-center sm:space-x-10 sm:space-y-0">
+                <div class="flex items-center">
+                  <%= f.radio_button :gender, 'male', required: true, id: 'male', class: "h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600" %>
+                  <label for="male" class="ml-4 block text-sm font-medium leading-6 text-gray-900"> Male</label>
+                </div>
+                <div class="flex items-center">
+                  <%= f.radio_button :gender, 'female', required: true, id: 'female', class: "h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600" %>
+                  <label for="female" class="ml-4 block text-sm font-medium leading-6 text-gray-900">Female</label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+          <div>
+            <%= f.label :username, class: "block text-sm font-medium leading-6 text-gray-900" %>
+            <div class="mt-2">
+              <%= f.text_field :username, autocomplete: "username", required: true, class: "block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+            </div>
+          </div>
+
+          <div>
+            <%= f.label :password, class: "block text-sm font-medium leading-6 text-gray-900" %>
+            <% if @minimum_password_length %>
+              <em class="text-sm text-gray-500">(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %>
+            <div class="mt-2">
+              <%= f.password_field :password, autocomplete: "new-password", required: true, class: "block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+            </div>
+          </div>
+
+          <div>
+            <%= f.label :password_confirmation, class: "block text-sm font-medium leading-6 text-gray-900" %>
+            <div class="mt-2">
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true, class: "block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+            </div>
+          </div>
+
+          <div>
+            <%= f.submit "Sign Up", class: "flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="hidden w-0 flex-1 lg:flex lg:items-center lg:justify-center">
+  <img class="object-cover" src="<%= asset_path('main.png') %>" alt="">
+</div>

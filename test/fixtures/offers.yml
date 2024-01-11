@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  description: 'Free coffee'
+  target_gender: 'male'
+  target_age: '[18,35]'
+
+two:
+  description: 'Free coffee'
+  target_gender: 'female'
+  target_age: '[25,45]'
