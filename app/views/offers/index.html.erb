@@ -1,0 +1,46 @@
+<div class="bg-white">
+  <% stock_image = "http://placekitten.com/200/300" %>
+  <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+    <h2 class="text-xl font-bold text-gray-900">Claimed Offers</h2>
+
+    <div class="mt-8 grid grid-cols-1 gap-y-12 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
+      <% @claimed_offers.each do |claimed_offer| %>
+        <div>
+          <div class="relative">
+            <div class="relative h-72 w-full overflow-hidden rounded-lg">
+              <img src="<%= stock_image %>" alt="Product Image" class="h-full w-full object-cover object-center">
+            </div>
+            <div class="relative mt-4">
+              <h3 class="text-sm font-medium text-gray-900"><%= claimed_offer.description %></h3>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+    <h2 class="text-xl font-bold text-gray-900">Available Offers</h2>
+
+    <div class="mt-8 grid grid-cols-1 gap-y-12 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
+      <% @offers.each do |offer| %>
+        <div>
+          <div class="relative">
+            <div class="relative h-72 w-full overflow-hidden rounded-lg">
+              <img src="<%= stock_image %>" alt="Product Image" class="h-full w-full object-cover object-center">
+            </div>
+            <div class="relative mt-4">
+              <h3 class="text-sm font-medium text-gray-900"><%= offer.description %></h3>
+            </div>
+            <div class="absolute inset-x-0 top-0 flex h-72 items-end justify-end overflow-hidden rounded-lg p-4">
+              <div aria-hidden="true" class="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-black opacity-50"></div>
+              <%= form_with(model: Claim.new, url: claims_path, method: :post) do |form| %>
+                <%= form.hidden_field :offer_id, value: offer.id %>
+                <%= form.submit "Claim", class: "relative rounded-md bg-green-400 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-green-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Nabidka</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <main class="container mx-auto mt-28 px-5 flex">
+      <% if current_player.present? %>
+      <div class="flex flex-col gap-y-2 overflow-y-auto border-r border-gray-200 bg-white px-6">
+        <div class="flex h-16 shrink-0 items-center">
+          <img class="h-8 w-auto" src="<%= asset_path('main.png') %>"  alt="Your Company">
+        </div>
+        <nav class="flex flex-1 flex-col">
+          <ul role="list" class="flex flex-1 flex-col gap-y-7">
+            <li>
+              <ul role="list" class="-mx-2 space-y-1">
+                <li>
+                  <a href="#" class="text-indigo-600 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                    <svg class="h-6 w-6 shrink-0 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                    </svg>
+                    Offers
+                  </a>
+                </li>
+                <li class="mt-auto">
+                  <span class="flex items-center gap-x-4 px-4 py-2 mt-28 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-50"><%= current_player.username %></span>
+                </li>
+                <hr>
+                <li>
+                  <%= form_with url: destroy_player_session_path, method: :delete do %>
+                    <%= button_tag(type: 'submit', class: 'text-indigo-600 group flex gap-x-3 rounded-md px-5 text-sm leading-6 font-semibold') do %>
+                      Sign out
+                    <% end %>
+                  <% end %>
+                </li>
+              </ul>
+            </li>
+        </nav>
+        <% end %>
+      </div>
+      <%= yield %>
+    </main>
+  </body>
+</html>
